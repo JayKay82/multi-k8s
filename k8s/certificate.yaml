@@ -1,0 +1,20 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: jankroezen-com-tls
+spec:
+  secretName: jankroezen-com
+  issuerRef: 
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: jankroezen.com
+  dnsNames:
+    - jankroezen.com
+    - www.jankroezen.com
+  acme:
+    config:
+      - http01:
+          ingressClass: nginx
+        domains:
+          - jankroezen.com
+          - www.jankroezen.com
